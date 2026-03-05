@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Donna — Каталог нижнего белья</title>
+<meta property="og:title" content="Bella Donna — Каталог нижнего белья">
+<meta property="og:description" content="Элегантное нижнее бельё. Опт и розница. Казахстан.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/photo_322.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#faf6f2; --nude:#e8d5c4; --rose:#c9897a;
+  --deep:#2a1f1a; --gold:#c8a96e; --text:#3d2e28; --muted:#9a847a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--text);overflow-x:hidden;}
+
+.hero{background:var(--deep);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,169,110,.18) 0%,transparent 70%);}
+.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(32px,8vw,56px);color:var(--gold);letter-spacing:.08em;position:relative;}
+.hero-sub{font-weight:300;font-size:13px;letter-spacing:.25em;color:var(--nude);margin-top:8px;text-transform:uppercase;position:relative;}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:20px auto;opacity:.6;position:relative;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+.hero-contact{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,110,.15);border:1px solid rgba(200,169,110,.3);border-radius:30px;padding:10px 20px;color:var(--gold);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.05em;transition:background .3s;}
+.hero-contact:hover{background:rgba(200,169,110,.28);}
+.btn-admin{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:10px 20px;color:#fff;font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;letter-spacing:.05em;transition:background .3s;}
+.btn-admin:hover{background:rgba(255,255,255,.15);}
+
+.filters-wrap{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--nude);padding:0 16px;}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:12px 0;scrollbar-width:none;}
+.filters::-webkit-scrollbar{display:none;}
+.filter-btn{flex-shrink:0;padding:7px 16px;border-radius:20px;border:1.5px solid var(--nude);background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.filter-btn.active,.filter-btn:hover{background:var(--deep);border-color:var(--deep);color:var(--gold);}
+
+.grid-section{padding:24px 16px 40px;max-width:700px;margin:0 auto;}
+.section-label{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;padding-left:4px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(42,31,26,.07);transition:transform .2s;cursor:pointer;}
+.card:active{transform:scale(.98);}
+.card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:#f5ede7;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+.card:hover .card-img-wrap img{transform:scale(1.04);}
+.card-code{position:absolute;top:10px;left:10px;background:var(--deep);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:.1em;padding:3px 8px;border-radius:8px;}
+.card-body{padding:12px 12px 14px;}
+.card-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--deep);margin-bottom:4px;line-height:1.3;}
+.card-size{font-size:11px;color:var(--muted);letter-spacing:.05em;margin-bottom:8px;}
+.card-prices{display:flex;flex-direction:column;gap:2px;}
+.price-row{display:flex;justify-content:space-between;align-items:center;}
+.price-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+.price-val{font-size:13px;font-weight:500;color:var(--rose);}
+.price-val.opt{color:var(--gold);}
+.card-btn{display:block;width:100%;margin-top:10px;padding:8px;background:var(--deep);color:var(--gold);border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;text-align:center;cursor:pointer;text-decoration:none;transition:background .2s;}
+.card-btn:hover{background:#3d2e28;}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(42,31,26,.7);z-index:1000;align-items:flex-end;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--cream);border-radius:24px 24px 0 0;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease;}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-close{position:absolute;top:16px;right:20px;background:rgba(42,31,26,.1);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--deep);display:flex;align-items:center;justify-content:center;}
+.modal-inner{position:relative;padding:20px 20px 32px;}
+.modal-handle{width:40px;height:4px;background:var(--nude);border-radius:2px;margin:0 auto 20px;}
+.modal-img{width:100%;border-radius:16px;object-fit:cover;max-height:360px;}
+.modal-code{margin-top:16px;font-size:11px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--deep);margin-top:4px;}
+.modal-size{margin-top:6px;font-size:13px;color:var(--muted);}
+.modal-prices{margin-top:16px;display:flex;gap:12px;}
+.modal-price-box{flex:1;background:#fff;border-radius:12px;padding:12px;text-align:center;}
+.modal-price-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.modal-price-num{font-size:20px;font-weight:600;color:var(--rose);}
+.modal-price-num.opt{color:var(--gold);}
+.modal-order-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:20px;padding:16px;background:#25D366;color:#fff;border:none;border-radius:14px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:background .2s;}
+.modal-order-btn:hover{background:#1ebe5d;}
+
+/* ADMIN */
+.admin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;overflow-y:auto;}
+.admin-overlay.open{display:block;}
+.admin-panel{background:#fff;min-height:100vh;padding:0 0 60px;max-width:600px;margin:0 auto;}
+.admin-header{background:var(--deep);color:var(--gold);padding:20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.admin-title{font-family:'Playfair Display',serif;font-size:20px;}
+.admin-close-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.admin-body{padding:20px;}
+.admin-section-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--deep);margin:24px 0 12px;border-bottom:1px solid var(--nude);padding-bottom:8px;}
+.admin-items{display:flex;flex-direction:column;gap:10px;}
+.admin-item{display:flex;align-items:center;gap:12px;background:var(--cream);border-radius:12px;padding:10px 12px;}
+.admin-item-img{width:48px;height:64px;border-radius:8px;object-fit:cover;background:#e8d5c4;flex-shrink:0;}
+.admin-item-info{flex:1;min-width:0;}
+.admin-item-name{font-size:13px;font-weight:500;color:var(--deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.admin-item-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.admin-item-del{background:none;border:1px solid #f0c0b8;border-radius:8px;color:#c9897a;width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
+.admin-item-del:hover{background:#fdecea;}
+.admin-item-edit{background:none;border:1px solid var(--nude);border-radius:8px;color:var(--muted);width:32px;height:32px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:4px;}
+.admin-item-edit:hover{background:var(--nude);}
+.add-form{background:var(--cream);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.form-row{display:flex;flex-direction:column;gap:4px;}
+.form-row label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:500;}
+.form-row input,.form-row select{padding:10px 12px;border-radius:10px;border:1.5px solid var(--nude);background:#fff;font-family:'Jost',sans-serif;font-size:14px;color:var(--deep);outline:none;transition:border .2s;}
+.form-row input:focus,.form-row select:focus{border-color:var(--gold);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.img-preview-box{width:100%;max-width:180px;aspect-ratio:3/4;border-radius:12px;background:#f0e8e2;border:2px dashed var(--nude);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;overflow:hidden;margin:0 auto;}
+.img-preview-box img{width:100%;height:100%;object-fit:cover;display:none;}
+.img-hint{font-size:11px;color:var(--muted);line-height:1.6;}
+.btn-save{width:100%;padding:14px;background:var(--deep);color:var(--gold);border:none;border-radius:12px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:.05em;transition:background .2s;}
+.btn-save:hover{background:#3d2e28;}
+.btn-outline{width:100%;padding:12px;background:transparent;color:var(--deep);border:1.5px solid var(--nude);border-radius:12px;font-family:'Jost',sans-serif;font-size:13px;cursor:pointer;transition:background .2s;}
+.btn-outline:hover{background:var(--nude);}
+.info-box{background:var(--cream);border-radius:12px;padding:16px;font-size:13px;color:var(--muted);line-height:1.7;}
+
+.footer{text-align:center;padding:32px 20px 48px;border-top:1px solid var(--nude);}
+.footer-brand{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:8px;}
+.footer-text{font-size:12px;color:var(--muted);line-height:1.8;}
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-brand">Bella Donna</div>
+  <div class="hero-sub">Нижнее бельё · Казахстан</div>
+  <div class="hero-divider"></div>
+  <div class="hero-btns">
+    <a href="https://wa.me/77053458458" class="hero-contact" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Написать нам
+    </a>
+    <button class="btn-admin" onclick="openAdmin()">✏️ Редактор</button>
+  </div>
+</div>
+
+<div class="filters-wrap">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCatalog('all',this)">Все</button>
+    <button class="filter-btn" onclick="filterCatalog('peignoir',this)">Пеньюары</button>
+    <button class="filter-btn" onclick="filterCatalog('bra',this)">Бюстгальтеры</button>
+    <button class="filter-btn" onclick="filterCatalog('set',this)">Комплекты</button>
+    <button class="filter-btn" onclick="filterCatalog('panty',this)">Трусы</button>
+  </div>
+</div>
+
+<div class="grid-section">
+  <div class="section-label">Коллекция</div>
+  <div class="grid" id="catalog-grid"></div>
+  <div id="empty-state" class="empty-state" style="display:none">Товары не найдены</div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Bella Donna</div>
+  <div class="footer-text">Нижнее бельё оптом и в розницу<br>WhatsApp: +7 705 345 84 58</div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img class="modal-img" id="modal-img" src="" alt="">
+      <div class="modal-code" id="modal-code"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-size" id="modal-size"></div>
+      <div class="modal-prices">
+        <div class="modal-price-box"><div class="modal-price-lbl">Опт</div><div class="modal-price-num opt" id="modal-opt"></div></div>
+        <div class="modal-price-box"><div class="modal-price-lbl">Розница</div><div class="modal-price-num" id="modal-retail"></div></div>
+      </div>
+      <a class="modal-order-btn" id="modal-wa" href="#" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Написать в WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">✏️ Редактор каталога</div>
+      <button class="admin-close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+
+      <div class="admin-section-title" id="form-section-title">➕ Добавить товар</div>
+      <div class="add-form">
+        <input type="hidden" id="edit-id">
+
+        <div class="form-row">
+          <label>Превью фото</label>
+          <div class="img-preview-box" id="img-preview-box">
+            <img id="img-preview" src="" alt="">
+            <span id="img-placeholder">Нет фото</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Имя файла фото</label>
+          <input type="text" id="f-img" placeholder="images/foto1.jpg" oninput="previewImg(this.value)">
+          <div class="img-hint">
+            📂 Напиши имя файла, который загрузишь на GitHub в папку <b>images/</b><br>
+            Пример: <b>images/peignoir_8000.jpg</b>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Название товара</label>
+          <input type="text" id="f-name" placeholder="Пеньюар атласный мятный">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-row">
+            <label>Код товара</label>
+            <input type="text" id="f-code" placeholder="8000">
+          </div>
+          <div class="form-row">
+            <label>Категория</label>
+            <select id="f-cat">
+              <option value="peignoir">Пеньюар</option>
+              <option value="bra">Бюстгальтер</option>
+              <option value="set">Комплект</option>
+              <option value="panty">Трусы</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Размер</label>
+          <input type="text" id="f-size" placeholder="42–48 или S, M, L, XL">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-row">
+            <label>Цена ОПТ (₸)</label>
+            <input type="number" id="f-opt" placeholder="9900">
+          </div>
+          <div class="form-row">
+            <label>Цена РОЗНИЦА (₸)</label>
+            <input type="number" id="f-retail" placeholder="10500">
+          </div>
+        </div>
+
+        <button class="btn-save" onclick="saveItem()">💾 Сохранить товар</button>
+        <button class="btn-outline" onclick="cancelEdit()" id="btn-cancel" style="display:none">✕ Отмена</button>
+      </div>
+
+      <div class="admin-section-title">📦 Все товары (<span id="items-count">0</span>)</div>
+      <div class="admin-items" id="admin-items-list"></div>
+
+      <div class="admin-section-title">📥 Сохранить каталог</div>
+      <div class="info-box">
+        После всех изменений нажми кнопку ниже — скачается новый файл <b>catalog.html</b>.<br>
+        Загрузи его на GitHub вместо старого — и каталог обновится!
+      </div>
+      <button class="btn-outline" style="margin-top:12px;border-color:var(--gold);color:var(--deep);font-weight:500" onclick="exportCatalog()">
+        📥 Скачать обновлённый catalog.html
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA = '77053458458';
+let products = [
+  {id:1,cat:'peignoir',code:'8000',name:'Пеньюар атласный',size:'42–48',opt:9900,retail:10500,img:'images/photo_322.jpg'},
+  {id:2,cat:'panty',code:'5095',name:'Трусы стринги',size:'S, M, L, XL',opt:1250,retail:1400,img:'images/photo_323.jpg'},
+  {id:3,cat:'panty',code:'5100',name:'Трусы кружевные',size:'S, M, L, XL',opt:1250,retail:1400,img:'images/photo_324.jpg'},
+  {id:4,cat:'panty',code:'5090',name:'Трусы классика',size:'S, M, L, XL',opt:1250,retail:1400,img:'images/photo_325.jpg'},
+  {id:5,cat:'panty',code:'5045',name:'Трусы бикини кружево',size:'S, M, L, XL',opt:1250,retail:1400,img:'images/photo_326.jpg'},
+  {id:6,cat:'set',code:'2025',name:'Комплект кружево',size:'75–95 / B, C',opt:3100,retail:3300,img:'images/photo_327.jpg'},
+  {id:7,cat:'bra',code:'2050',name:'Бюстгальтер бордо',size:'75–95 / B, C, D',opt:2700,retail:2900,img:'images/photo_328.jpg'},
+  {id:8,cat:'bra',code:'2050',name:'Бюстгальтер белый',size:'75–95 / B, C, D',opt:2700,retail:2900,img:'images/photo_329.jpg'},
+  {id:9,cat:'set',code:'3680',name:'Комплект цветочный',size:'75B–90B',opt:6700,retail:6900,img:'images/photo_330.jpg'},
+  {id:10,cat:'set',code:'3610',name:'Комплект розы',size:'75B–90B',opt:6700,retail:6900,img:'images/photo_331.jpg'},
+  {id:11,cat:'set',code:'3625',name:'Комплект бабочки',size:'75B–90B',opt:6700,retail:6900,img:'images/photo_332.jpg'},
+  {id:12,cat:'bra',code:'11090',name:'Бюстгальтер push-up',size:'85C, 85B–95B',opt:2200,retail:2500,img:'images/photo_333.jpg'},
+  {id:13,cat:'bra',code:'7000',name:'Бралетт кружево чёрный',size:'75B–80B',opt:3200,retail:3400,img:'images/photo_334.jpg'},
+  {id:14,cat:'bra',code:'7000',name:'Бралетт кружево мокко',size:'75B–90B',opt:3200,retail:3400,img:'images/photo_335.jpg'},
+  {id:15,cat:'bra',code:'7000',name:'Бралетт кружево белый',size:'75B–80B',opt:3200,retail:3400,img:'images/photo_336.jpg'},
+  {id:16,cat:'bra',code:'2100',name:'Бюстгальтер большой размер',size:'80D–100D',opt:2700,retail:2900,img:'images/photo_337.jpg'},
+];
+let nextId = 17;
+let activeFilter = 'all';
+
+function fmt(n){ return Number(n).toLocaleString('ru')+' ₸'; }
+
+function renderCatalog(){
+  const grid = document.getElementById('catalog-grid');
+  const list = activeFilter==='all' ? products : products.filter(p=>p.cat===activeFilter);
+  document.getElementById('empty-state').style.display = list.length ? 'none' : 'block';
+  grid.innerHTML = list.map(p=>`
+    <div class="card" onclick="openModal(${p.id})">
+      <div class="card-img-wrap">
+        <img src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.2'">
+        <div class="card-code">Код ${p.code}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-size">${p.size}</div>
+        <div class="card-prices">
+          <div class="price-row"><span class="price-label">Опт</span><span class="price-val opt">${fmt(p.opt)}</span></div>
+          <div class="price-row"><span class="price-label">Розница</span><span class="price-val">${fmt(p.retail)}</span></div>
+        </div>
+        <a class="card-btn" href="https://wa.me/${WA}?text=${encodeURIComponent('Хочу заказать '+p.name+' (Код '+p.code+'), размер '+p.size)}" target="_blank" onclick="event.stopPropagation()">Заказать</a>
+      </div>
+    </div>`).join('');
+}
+
+function filterCatalog(cat,btn){
+  activeFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog();
+}
+
+function openModal(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('modal-img').src=p.img;
+  document.getElementById('modal-code').textContent='Код '+p.code;
+  document.getElementById('modal-title').textContent=p.name;
+  document.getElementById('modal-size').textContent='Размер: '+p.size;
+  document.getElementById('modal-opt').textContent=fmt(p.opt);
+  document.getElementById('modal-retail').textContent=fmt(p.retail);
+  document.getElementById('modal-wa').href='https://wa.me/'+WA+'?text='+encodeURIComponent('Хочу заказать '+p.name+' (Код '+p.code+'), размер '+p.size);
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+function closeModalOutside(e){ if(e.target===document.getElementById('modal-overlay')) closeModal(); }
+
+function openAdmin(){ renderAdminList(); document.getElementById('admin-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); document.body.style.overflow=''; cancelEdit(); }
+
+function renderAdminList(){
+  document.getElementById('items-count').textContent=products.length;
+  const list=document.getElementById('admin-items-list');
+  if(!products.length){ list.innerHTML='<div class="empty-state">Нет товаров</div>'; return; }
+  list.innerHTML=products.map(p=>`
+    <div class="admin-item">
+      <img class="admin-item-img" src="${p.img}" onerror="this.style.opacity='.3'" alt="">
+      <div class="admin-item-info">
+        <div class="admin-item-name">${p.name}</div>
+        <div class="admin-item-meta">Код ${p.code} · ${p.size} · ${fmt(p.retail)}</div>
+      </div>
+      <button class="admin-item-edit" onclick="editItem(${p.id})">✏️</button>
+      <button class="admin-item-del" onclick="deleteItem(${p.id})">🗑</button>
+    </div>`).join('');
+}
+
+function previewImg(val){
+  const img=document.getElementById('img-preview'), ph=document.getElementById('img-placeholder');
+  if(val){ img.src=val; img.style.display='block'; ph.style.display='none'; }
+  else { img.style.display='none'; ph.style.display='block'; }
+}
+
+function saveItem(){
+  const img=document.getElementById('f-img').value.trim();
+  const name=document.getElementById('f-name').value.trim();
+  const code=document.getElementById('f-code').value.trim();
+  const cat=document.getElementById('f-cat').value;
+  const size=document.getElementById('f-size').value.trim();
+  const opt=parseInt(document.getElementById('f-opt').value);
+  const retail=parseInt(document.getElementById('f-retail').value);
+  const eid=document.getElementById('edit-id').value;
+  if(!name||!code||!size||!opt||!retail){ alert('Заполни все поля!'); return; }
+  if(eid){
+    const i=products.findIndex(p=>p.id===parseInt(eid));
+    if(i!==-1) products[i]={...products[i],img,name,code,cat,size,opt,retail};
+    cancelEdit();
+  } else {
+    products.push({id:nextId++,cat,code,name,size,opt,retail,img:img||''});
+  }
+  clearForm(); renderAdminList(); renderCatalog();
+}
+
+function editItem(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('edit-id').value=p.id;
+  document.getElementById('f-img').value=p.img;
+  document.getElementById('f-name').value=p.name;
+  document.getElementById('f-code').value=p.code;
+  document.getElementById('f-cat').value=p.cat;
+  document.getElementById('f-size').value=p.size;
+  document.getElementById('f-opt').value=p.opt;
+  document.getElementById('f-retail').value=p.retail;
+  previewImg(p.img);
+  document.getElementById('form-section-title').textContent='✏️ Редактировать товар';
+  document.getElementById('btn-cancel').style.display='block';
+  document.getElementById('admin-overlay').scrollTop=0;
+}
+
+function cancelEdit(){
+  document.getElementById('edit-id').value='';
+  document.getElementById('form-section-title').textContent='➕ Добавить товар';
+  document.getElementById('btn-cancel').style.display='none';
+  clearForm();
+}
+
+function clearForm(){
+  ['f-img','f-name','f-code','f-size','f-opt','f-retail'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-cat').value='peignoir';
+  previewImg('');
+}
+
+function deleteItem(id){
+  if(!confirm('Удалить этот товар?')) return;
+  products=products.filter(p=>p.id!==id);
+  renderAdminList(); renderCatalog();
+}
+
+function exportCatalog(){
+  const src=document.documentElement.outerHTML;
+  const updated=src.replace(
+    /let products = \[[\s\S]*?\];\s*let nextId = \d+;/,
+    `let products = ${JSON.stringify(products,null,2)};\nlet nextId = ${nextId};`
+  );
+  const blob=new Blob([updated],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='catalog.html';
+  a.click();
+}
+
+renderCatalog();
+</script>
+</body>
+</html>
